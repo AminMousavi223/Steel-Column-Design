@@ -7,3 +7,4 @@ if Pu == 0:
     D = 0 ; L = 0
 print(float(Pu))
 
+print("Hi")

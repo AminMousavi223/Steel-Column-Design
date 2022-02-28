@@ -37,11 +37,7 @@ def input_value():
         levels = int(input('How many levels exist ?'))
 
         if frame == '2d':
-<<<<<<< HEAD
-            Bay = int(input('How many bay exist ?'))
-=======
             opening = [int(input('how many opening exist ?'))]
->>>>>>> 1442ce2619ab93505503dc09cfd1dd01b728af87
         else:
             Bay = [int(input('How many bay exist in xy dimension '))
                 , int(input('How many bay exist in xz dimension '))]
@@ -49,19 +45,12 @@ def input_value():
     # length calculator
     def length_cal(frame):
         lengthColumn = []
-<<<<<<< HEAD
-        lengthbay = []
-        if frame == '1d':
-            lengthColumn.append(float(input('Enter length of column (m) ')))
-
-=======
         lengthOpening_xy = []
         lengthOpening_xz = []
         # length of column
         if frame == '1d':
             lengthColumn.append(float(input('enter length of column column (m) ')))
             return [lengthColumn]
->>>>>>> 1442ce2619ab93505503dc09cfd1dd01b728af87
         else:
 
             for i in range(1, levels + 1):

@@ -5,8 +5,8 @@ import numpy as np
 def input_value():
     # calculating pu with dead load and live load or directly
     try:
-        D = float(input('enter dead load (kg)'))
-        L = float(input('enter live load (kg)'))
+        D = float(input('Enter dead load (kg)'))
+        L = float(input('Enter live load (kg)'))
         Pu = None
     except:
         D = None
@@ -14,7 +14,7 @@ def input_value():
 
     if D is None or L is None:
         try:
-            Pu = float(input('enter  critical load (kg)'))
+            Pu = float(input('Enter  critical load (kg)'))
         except:
             Pu = None
 
@@ -28,26 +28,26 @@ def input_value():
         return Pu
 
     Pu = Load(D, L, Pu)
-    opening = 0
+    Bay = 0
 
     # frame setting
 
-    frame = input('enter what is kind of your system ? 1D, 2D or 3D ?').lower()
+    frame = input('Enter what is kind of your system ? 1D, 2D or 3D ?').lower()
     if frame in ['2d', '3d']:
-        levels = int(input('how many levels exist ?'))
+        levels = int(input('How many levels exist ?'))
 
         if frame == '2d':
-            opening = int(input('how many opening exist ?'))
+            Bay = int(input('How many bay exist ?'))
         else:
-            opening = [int(input('how many opening exist in xy dimension '))
-                , int(input('how many opening exist in xz  dimension '))]
+            Bay = [int(input('How many bay exist in xy dimension '))
+                , int(input('How many bay exist in xz dimension '))]
 
     # length calculator
     def length_cal(frame):
         lengthColumn = []
-        lengthOpening = []
+        lengthbay = []
         if frame == '1d':
-            lengthColumn.append(float(input('enter length of column column (m) ')))
+            lengthColumn.append(float(input('Enter length of column (m) ')))
 
         else:
 
@@ -57,8 +57,8 @@ def input_value():
 
     lengthColumn = length_cal(frame)
 
-    E = float(input('enter E of your steel '))
-    Fy = float(input('enter Fy of your steel '))
+    E = float(input('Enter E of your steel '))
+    Fy = float(input('Enter Fy of your steel '))
 
     return [frame, Pu, lengthColumn, E, Fy]
 

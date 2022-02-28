@@ -37,7 +37,11 @@ def input_value():
         levels = int(input('How many levels exist ?'))
 
         if frame == '2d':
+<<<<<<< HEAD
             Bay = int(input('How many bay exist ?'))
+=======
+            opening = [int(input('how many opening exist ?'))]
+>>>>>>> 1442ce2619ab93505503dc09cfd1dd01b728af87
         else:
             Bay = [int(input('How many bay exist in xy dimension '))
                 , int(input('How many bay exist in xz dimension '))]
@@ -45,17 +49,41 @@ def input_value():
     # length calculator
     def length_cal(frame):
         lengthColumn = []
+<<<<<<< HEAD
         lengthbay = []
         if frame == '1d':
             lengthColumn.append(float(input('Enter length of column (m) ')))
 
+=======
+        lengthOpening_xy = []
+        lengthOpening_xz = []
+        # length of column
+        if frame == '1d':
+            lengthColumn.append(float(input('enter length of column column (m) ')))
+            return [lengthColumn]
+>>>>>>> 1442ce2619ab93505503dc09cfd1dd01b728af87
         else:
 
             for i in range(1, levels + 1):
                 lengthColumn.append(float(input(f'length of column level {i} (m)')))
-        return lengthColumn
+            # length of opening
+            for i in range(1, opening[0] + 1):
+                lengthOpening_xy.append(float(input(f'length of opening in xy plate {i}'
+                                                    f' (m) (start from left)')))
+            if frame == '3d':
+                for i in range(1, opening[1] + 1):
+                    lengthOpening_xz.append(float(input(f'length of opening in xz plate {i}'
+                                                        f' (m) (start from left)')))
+                return [lengthColumn, lengthOpening_xy, lengthOpening_xz]
 
-    lengthColumn = length_cal(frame)
+            return [lengthColumn, lengthOpening_xy]
+
+    length= length_cal(frame)
+    lengthColumn = length[0]
+    try:
+        lengthOpening = [length[1], length[2]]
+    except:
+        lengthOpening = [length[1]]
 
     E = float(input('Enter E of your steel '))
     Fy = float(input('Enter Fy of your steel '))

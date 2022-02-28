@@ -1,47 +1,47 @@
-from ast import Pass
-from re import A
-from termios import FFDLY
 import numpy as np
+import openpyxl as ex
 
-# Specify the amount of loading
-def Load():
-    if Pu == 0:
-        Pu1 = 1.4*D
-        Pu2 = 1.4*D + 1.6*L
-        Pu = max(Pu1, Pu2)
+def Excel():
+    IPE = ex.load_workbook('Steel Full IPE.xlsx')
+    IPE = IPE.active
+    Number = IPE.cell(row=5, column=1).value
+    A = IPE.cell(row=5, column=10).value
+    r_x = IPE.cell(row=5, column=15).value
+    r_y = IPE.cell(row=5, column=19).value
+    Fy = IPE.cell(row=5, column=22).value
+    E = IPE.cell(row=5, column=24).value
+    return [A, r_x, r_y, Fy, E]
+print(Excel(A))
 
-# Select the cross section number
-def Numbering():
+# # Get the K value
+# def K():
 
-    return
+#     return 
 
-# Get the K value
-def K():
-
-    return 
-
-# Get the Fcr value
-def Fcr():
-    Landa = (k*L)/rmin
-    Fe=((np.pi**2)*E)/(Landa)**2
-    if Landa <= 139:
-        Fcr=(0.658**(Fy/Fe))*Fy
-    else:
-        Fcr=0.877*Fe
-    return
+# # Get the Fcr value
+# def Fcr():
+#     Landa_x = (k_x*L)/r_x
+#     Landa_y = (k_y*L)/r_y
+#     Landa = max(Landa_x,Landa_y)
+#     Fe=((np.pi**2)*E)/(Landa)**2
+#     if Landa <= 139:
+#         Fcr=(0.658**(Fy/Fe))*Fy
+#     else:
+#         Fcr=0.877*Fe
+#     return
 
 
-def check():
-    Pn=Fcr*A
-    if (Pu/(0.9*Pn)) > 1:
-        Pass
-        # Return to Numbering and choose Higher one
-    elif (Pu/(0.9*Pn)) < 0.85:
-        Pass
-        # Return to Numbering and choose Lower one
-    else:
-        Pass
-        # OK
+# def check():
+#     Pn=Fcr*A
+#     if (Pu/(0.9*Pn)) > 1:
+#         Pass
+#         # Return to Numbering and choose Higher one
+#     elif (Pu/(0.9*Pn)) < 0.85:
+#         Pass
+#         # Return to Numbering and choose Lower one
+#     else:
+#         Pass
+#         # OK
 
 
 

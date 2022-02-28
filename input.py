@@ -1,6 +1,9 @@
 # input value
+import numpy as np
+
 
 def input_value():
+    # calculating pu with dead load and live load or directly
     try:
         D = float(input('enter dead load (kg)'))
         L = float(input('enter live load (kg)'))
@@ -15,6 +18,7 @@ def input_value():
         except:
             Pu = None
 
+    # combined loading
     def Load(D, L, Pu):
         if Pu == 0 or Pu == None:
             Pu1 = 1.4 * D
@@ -24,24 +28,39 @@ def input_value():
         return Pu
 
     Pu = Load(D, L, Pu)
+    opening = 0
+
+    # frame setting
 
     frame = input('enter what is kind of your system ? 1D, 2D or 3D ?').lower()
     if frame in ['2d', '3d']:
         levels = int(input('how many levels exist ?'))
 
-    def length_column(frame):
-        length = []
+        if frame == '2d':
+            opening = int(input('how many opening exist ?'))
+        else:
+            opening = [int(input('how many opening exist in xy dimension '))
+                , int(input('how many opening exist in xz  dimension '))]
+
+    # length calculator
+    def length_cal(frame):
+        lengthColumn = []
+        lengthOpening = []
         if frame == '1d':
-            length.append(float(input('enter length of column (m) ')))
+            lengthColumn.append(float(input('enter length of column column (m) ')))
 
         else:
 
             for i in range(1, levels + 1):
-                length.append(float(input(f'length of level {i} (m)')))
-        return length
+                lengthColumn.append(float(input(f'length of column level {i} (m)')))
+        return lengthColumn
 
-    length = length_column(frame)
+    lengthColumn = length_cal(frame)
 
-    return [frame, Pu, length]
+    E = float(input('enter E of your steel '))
+    Fy = float(input('enter Fy of your steel '))
+
+    return [frame, Pu, lengthColumn, E, Fy]
 
 
+input_value()

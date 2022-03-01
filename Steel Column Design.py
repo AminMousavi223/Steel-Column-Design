@@ -19,16 +19,16 @@ def Excel():
 # Get the Fcr value
 def Get_Fcr():
     Excel_Data = Excel()
-    A = Excel_Data[1]
-    r_x = Excel_Data[2]
-    r_y = Excel_Data[3]
-    Fy = Excel_Data[4]
-    E = Excel_Data[5]
+    A = float(Excel_Data[1])
+    r_x = float(Excel_Data[2])
+    r_y = float(Excel_Data[3])
+    Fy = float(Excel_Data[4])
+    E = float(Excel_Data[5])
     k_x= 1; k_y= 1; L= 5    # Should be delete!
     Landa_x = (k_x*L)/r_x
     Landa_y = (k_y*L)/r_y
     Landa = max(Landa_x,Landa_y)
-    Fe=100  #((np.pi**2)*E)/((Landa)**2)   # Should be chek!
+    Fe=float(((np.pi**2)*E)/((Landa)**2))   # Should be chek!
     if Landa <= 139:
         fcr=(0.658**(Fy/Fe))*Fy
     else:
@@ -44,7 +44,7 @@ def check():
     Excel_Data = Excel()
     A = Excel_Data[1]
     Pn=Fcr*A
-    Pu = 100    # Should be delete!
+    Pu = 10000    # Should be delete!
     if (Pu/(0.9*Pn)) > 1:   
         print("Next IPE")
         # Return to Numbering and choose Higher one

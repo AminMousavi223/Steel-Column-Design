@@ -138,3 +138,4 @@ def input_value():
     return [frame, Pu, lengthColumn, E, Fy, lengthOpening]
 
 input_value()
+

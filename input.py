@@ -122,19 +122,6 @@ def input_value():
                     Gb = sigma[2] / sigma[3]
             return [frame, Pu, lengthColumn, E, Fy, lengthOpening, Ga, Gb]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     return [frame, Pu, lengthColumn, E, Fy, lengthOpening]
 
 input_value()

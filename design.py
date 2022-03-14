@@ -1,8 +1,9 @@
 # design column object
 import pandas as pd
+import numpy as np
 
-IPB = pd.read_excel('Steel Full.xlsx','IPB' )
-IPE = pd.read_excel('Steel Full.xlsx','IPE' )
+IPB = pd.read_excel('Steel Full.xlsx', 'IPB')
+IPE = pd.read_excel('Steel Full.xlsx', 'IPE')
 
 
 class designColumn():
@@ -24,19 +25,39 @@ class designColumn():
         self.Fy = inputValue[4]
         self.K = inputValue[5]
         self.IPB = inputValue[6]
+        self.IPE = inputValue[6]
         try:
-            self.lengthOpening = inputValue[7]
+            self.lengthOpening = inputValue[8]
         except:
             None
 
-    def SinglColumn(self):
-        Ag = self.Pu / 1500
+    def SingleColumn(self):
         A = self.IPB.loc[3:, 'مساحت']
-        r_x = self.IPB.loc[3:, 'مساحت']
-        r_y = self.IPB.loc[3:, 'مساحت']
-        Fy = self.IPB.loc[3:, 'مساحت']
-        E = self.IPB.loc[3:, 'مساحت']
-#
-# inputValue = ['2d',10000,4,2100000,2400,1,5]
-# column = designColumn(inputValue)
+        r_x = self.IPB.loc[3:, 'شعاع ژیراسیون حول محور x-x']
+        r_y = self.IPB.loc[3:, 'شعاع ژیراسیون حول محور y-y']
+        Fy = self.IPB.loc[3:, 'تنش تسلیم']
+        E = self.IPB.loc[3:, 'مدول الاستیسیته']
+        FS_list = []
+        j = 0
+        for i in range(3, 27):
+            r_min = min(r_y[i], r_x[i])
+            landa = (self.K * self.lengthColumn) / r_min
+            Fe = ((np.pi ** 2) * E) / (landa ** 2)
+            if landa <= 139:
+                Fcr = (0.658 ** (Fy / Fe)) * Fy
+            else:
+                Fcr = 0.877 * Fe
+
+            Pn = Fcr * A[i]
+            FS = self.Pu / (0.9 * Pn)
+            FS_list.append(FS)
+            if 0.75 <= FS <= 1:
+
+                return IPB.loc[i , 'IPB']
+
+
+inputValue = ['1d', 50300, 2.7, 2100000, 2400, 1, IPB, IPE]
+column = designColumn(inputValue)
+a = column.SingleColumn()
 # print(column)
+print(a)

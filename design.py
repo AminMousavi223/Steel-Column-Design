@@ -156,7 +156,7 @@ class designColumn():
     #             return IPE.loc[i , '2IPE']
 
 
-inputValue = ['2d', 84012.5, 3.2, 2100000, 2400, 0.9, IPB, IPE]
+inputValue = ['2d', 84012.05, 2.7, 2100000, 2400, 1, IPB, IPE]
 column = designColumn(inputValue)
 a = column.SingleColumn_IPB()
 print(a)

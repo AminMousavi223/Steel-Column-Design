@@ -5,7 +5,7 @@ import numpy as np
 IPB = pd.read_excel('Steel Full.xlsx', 'IPB')
 IPE = pd.read_excel('Steel Full.xlsx', 'IPE')
 
-print(IPE)
+
 class designColumn():
 
     def __init__(self, inputValue):
